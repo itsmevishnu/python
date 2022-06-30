@@ -1,7 +1,7 @@
-cards = [1,4,5,6,8,9,12] #input
-query = 6 #input
+cards = [-1,0,3,5,9,12] #input
+query = 9 #input
 
-output = 3
+output = 4
 
 
 def binary_search(cards, query):
@@ -22,12 +22,12 @@ def binary_search(cards, query):
 
 test = {
     'input': {
-        'cards': [1,4,5,6,8,9,12],
-        'query': 6
+        'cards': [-1,0,3,5,9,12],
+        'query': 9
     },
-    'output': 3
+    'output': 4
 }
 
 result = binary_search(test['input']['cards'], test['input']['query'])
-
+print(result)
 print(result == output)
