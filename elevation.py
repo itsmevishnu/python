@@ -19,4 +19,4 @@ def find_elevation(lat, lng):
 
 data["elevation"] = data.apply(lambda x : find_elevation(x["lat"], x["lng"]), axis=1)
 
-data.to_csv('dataset/modified_lat_long.csv', index=False)
+data.to_csv('data_set/modified_lat_long.csv', index=False)
