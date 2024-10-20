@@ -24,16 +24,21 @@ def read_messages_from_file(file_name: str) -> list:
         
         messages = [message.strip() for message in content.split("---")]
         return messages
-
-def main() -> None:
+    
+def get_group_ids() -> list:
     group_id_string = os.getenv("GROUP_IDS", "")
     group_ids = group_id_string.split(",") if group_id_string else None
 
+    return group_ids if group_ids is not None else []
+
     
-    if group_ids is None:
-        print("There is no group id found!")
+def main() -> None:
+    
+    group_ids = get_group_ids()
+    
+    if len(group_id) == 0:
+        print("There is no group id found")
         return
-    
 
     try:
         messages = read_messages_from_file("offers.txt")
