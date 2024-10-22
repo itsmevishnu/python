@@ -2,21 +2,21 @@ from hvac import Client
 import base64
 
 def base64ify(bytes_or_str): # From documentation
-    if isinstance(bytes_or_str, str):
-        input_bytes = bytes_or_str.encode('utf8')
-    else:
-        input_bytes = bytes_or_str
+	if isinstance(bytes_or_str, str):
+		input_bytes = bytes_or_str.encode('utf8')
+	else:
+		input_bytes = bytes_or_str
 
-    output_bytes = base64.urlsafe_b64encode(input_bytes)
-    return output_bytes.decode('ascii')
+	output_bytes = base64.urlsafe_b64encode(input_bytes)
+	return output_bytes.decode('ascii')
 
 def debase64fi(bytes_or_str):
-    if isinstance(bytes_or_str, bytes):
-        input_bytes = bytes_or_str.decode("utf-8")
-    else:
-        input_bytes = bytes_or_str
-    output_bytes = base64.b64decode(input_bytes)
-    return output_bytes.decode('ascii')
+	if isinstance(bytes_or_str, bytes):
+		input_bytes = bytes_or_str.decode("utf-8")
+	else:
+		input_bytes = bytes_or_str
+	output_bytes = base64.b64decode(input_bytes)
+	return output_bytes.decode('ascii')
 
 def init_client():
 	client = Client(url='http://localhost:8200/', token="")
