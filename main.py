@@ -9,15 +9,22 @@ API_URL = "https://api.dictionaryapi.dev/api/v2/entries/en"
 
 app = Flask("app")
 
+# util functions
+def return_response(message, data = {}):
+    return {
+        "message": message,
+        "data": data
+    }
+
 @app.route("/")
 def home():
-    return {"message": "Welcome to free Dictionary"}
+    return return_response(message="Welcome to free Dictionary")
 
 
 @app.route("/search", methods=["POST", "GET"])
 def search_words():
     if request.method != 'POST':
-        return {"message": "The method is not implemented"}
+        return return_response(message="The method is not implemented")
     
     request_body = request.get_json()
     
@@ -28,12 +35,10 @@ def search_words():
        
         if response_from.status_code == 200:
             response_content = response_from.json()
-            response = {"word": word,
-                        "message": "Meanings found",
-                        "meanings": response_content[0].get("meanings")
-                        }
+            data = {"word": word,
+                    "meanings": response_content[0].get("meanings") }
+            return return_response(message="Meaning found", data=data)
         else:
-            response = {"message": "Unknown error has occured"}
+            return return_response(message="Unknown error has occured")
     else:
-        response = {"message": "No words found"}
-    return {"data": response}
+         return return_response(message="No words found")
